@@ -1,1 +1,29 @@
-alert("hi");
+
+
+// Check off todos by click
+$("ul").on("click", "li", function()
+{
+    $(this).toggleClass("completed");
+});
+
+// click on X to delete
+$("ul").on("click", "span", function(event)
+{
+    $(this).parent().fadeOut(500, function()
+    {
+        $(this).remove();
+    });
+    event.stopPropagation();
+});
+
+//input
+$("input[type='text']").keypress(function(event)
+{
+    if(event.which === 13)
+    {
+        var todoText = $(this).val();
+        $(this).val("");
+        //create new li
+        $("ul").append("<li><span>X</span> " + todoText + "</li>")
+    }
+});
